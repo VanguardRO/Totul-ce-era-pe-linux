@@ -1,0 +1,2 @@
+String is a variable type similar to "int". They are a few different kinds of variables. "int" holds whole numbers (without a decimal place), "double" or "dbl" holds a number with an infinite number of decimal places, "char" holds a single letter, and "string" holds everything you put in their as text. String can hold a list of numbers if you want, but you can't perform math with a string because it considers it text.﻿
+ 

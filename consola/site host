@@ -1,0 +1,196 @@
+ 
+yum erase httpd httpd-tools apr apr-util
+
+ 
+
+Apasati Enter si din nou validati cu Y cand va cere, exact ca in imaginea de mai sus.
+
+ 
+ 
+
+yum remove bind
+
+ 
+
+Enter si Y cand va cere
+
+ 
+ 
+
+bash <(curl -L -Ss http://sentora.org/install)
+
+ 
+
+La fel, Enter si Y cand va cere.
+
+OnScreen Steps
+
+ 
+
+Nu e doar de copy/ paste si enter, acum trebuie sa urmati comenzile de pe ecran, adica sa cititi !
+
+Prima data va va pune sa selectati un continent si/sau un ocean
+
+QLlaVbq.jpg
+
+Apasati cifra corespunzatoare locatiei voastre si apasati Enter.
+
+Dupa acest pas va va intreba care este tara voastra, procedati ca la pasul anterior, selectati cifra dorita si apasati Enter.
+
+Apoi va va intreba care este subdomeniul care sa fie instalat in CP :
+
+Aici o sa trebuiasca sa treci numele domeniului sau subdomeniului pe care planuiesti sa-l hostezi pe acest VPS, de exemplu subdomeniu.siteulmeu.com si apasati din nou Enter.
+
+Apoi va va intreba de IP, aici apasati doar enter pentru ca il va detecta singur sistemul. O sa va atentioneze cum ca nu ati scris nici un IP care sa pointeze catre domeniu, apasati "y" si enter.
+
+Dupa toti acesti pasi, asteptam ca totul sa se instaleze si sa se configureze !
+
+Dupa ce se termina de instalat, copiati log-ul (informatiile) si salvati-le intr-un fisier text inainte de a da restart, exact ca in imaginea urmatoare :
+
+6cQrYTM.jpg
+
+Daca le-ati copiat, apasati Y pentru restart.
+
+Dupa restart daca puneti ip-ul vps-ului vostru in browser, ar trebuii sa va arate interfata de administrare, unde va logati cu datele copiate anterior.
+
+Felicitari, tocmai ati instalat un Cpanel.
+
+Ridicare Limita Upload php.ini
+
+Logati-va pe VPS-ul vostru cu ajutorul lui Putty cum am facut la inceputul acestui tutorial, dupa care trebuie sa va instalati un editor text in linux, va recomand Nano, acest lucru il puteti face cu ajutorul comenzii :
+
+ 
+ 
+
+yum install nano
+
+ 
+
+Apasati ENTER si mai apoi cand va intreaba daca continuati, apasati "Y".
+
+Ok, acum poate deveni putin mai complicat, trebuie sa editam fisierul php.ini, executam urmatoare comanda in continuare :
+
+ 
+ 
+
+nano /etc/php.ini
+
+ 
+
+Apasati Enter, apoi tastati CTRL+W acestea le apasati din tastatura, nu le scrieti, unde o sa va apara "Search" si voi o sa scrieti : ”upload_max_filesize” fara ghilimele si dati Enter.
+
+rwXJVYG.jpg
+
+In continuare schimbati upload_max_filesize = 2mb in cat doriti, puteti pune 1000mb, desi recomand sa lasati 100, nu cred ca o sa aveti fisiere mai mari de 100 de mb.
+
+yNjvpKI.jpg
+
+Cand terminati de editat, apasati CTRL + O si ENTER, apoi CTRL +X si ENTER ca sa esiti.
+
+ 
+
+Instalarea unui Manager de Fisiere si a Platformelor (Wordpress, Joomla etc)
+
+ 
+
+Logativa din nou in Putty ca si turele precedente si urmati fiecare comanda, apasati enter si "Y" cand vi se cere :
+
+ 
+
+ 
+ 
+
+zppy repo add zppy-repo.mach-hosting.com
+
+ 
+
+ 
+ 
+
+zppy update
+
+ 
+
+ 
+ 
+
+zppy install Monsta_FileManager
+
+ 
+
+Acum sa instalam modulele :
+
+ 
+ 
+
+zppy repo add zppy-repo.mach-hosting.com
+
+ 
+
+ 
+ 
+
+zppy update
+
+ 
+
+ 
+ 
+
+zppy install sentastico
+
+ 
+
+Acum sa ne logam sa activam modulele, ne logam ca si mai devreme, pe baza ip-ului in browser cu datele copiate mai devreme.
+
+Dupa ce va logati, pe dreapta sus, o sa aveti categoria Admin -> Module Admin
+
+gb0VoT6.jpg
+
+ 
+
+Aici cautam Monsta File Manager si bifam "Administrators"
+
+ggCwtJp.jpg
+
+ 
+
+Tot in aceasta lista cautati si "SENTASTICO" si la fel bifati "Administrators" apoi va duceti jos si dati SAVE CHANGES!Daca ai terminat, hai sa ne ocupam de un client FTP.Din pagina principala a CPanelului (adica apasam butonul HOME din meniul de sus), mergem pe FTP Accounts (e mai jos, pe stanga).
+
+Aici o sa trebuiasca sa creem un user si o parola. Salvati-le si intr-un fisier text dupa ce le completati, pentru orice eventualitate.
+
+F7Y7DpY.jpg
+
+! La acces type selectati FULL ACCES, iar la Home Directory, trebuie sa bifati Set Mater Home Directory.
+
+Asta e tot, avem instalat tot ce ne trebuie pentru a ne apuca de hostat site-uri.
+
+ 
+
+Cum hostam un Website
+
+ 
+
+Pentru acest lucru aveti nevoie bineinteles de UN DOMENIU !
+
+Daca il aveti deja, mergem din Cpanel in categoria Domain Management -> Domains, scrieti numele domeniului vostru cu tot cu extensie (ex: .com, .ro) si apasati CREATE !
+
+Acum va trebuii sa ne ocupam de DNS-uri.
+
+Din meniul principal mergem la Management> DNS management, aici iti selectezi domeniul creat anterior si apasam EDIT.
+
+In meniul urmator ce ne va aparea vom apasa singura optiune disponibila si anume CREATE RECORDS.
+
+In urmatoarea fereastra, ne ducem pe NS-uri, exact ca in imagine :
+
+MsCruJR.jpg
+
+Default, nameserverele vor fi NS1.domeniu.com si NS2.domeniu.com, acestea va trebuii sa le schimbati manual.
+
+Adica mergeti pe siteul de unde va-ti achizitionat domeniul si in categoria NameServers va editati acelea in functie de ip-ul dvs.
+
+faceti la fel pentru ns1 cat si pentru NS2.
+
+Dupa ce le schimbati pe site le schimbati si in categoria NS din Cpanel. Propagarea poate dura pana la 48 de ore.
+
+Dupa ce schimbati acestea, sunteti gata, mergeti in Cpanel si din meniul principal, intram in Sentastico sa ne instalam ce ne trebuie : 

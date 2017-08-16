@@ -1,0 +1,15 @@
+//Acesta este doar fisierul unui limbaj in c ++
+#include <iostream> 
+
+int main ()
+
+//int se refera la adaugarea urmatorului cuvant asupra unei functii
+ 
+
+{
+// tot ce se intampla intre aceste parenteze sunt atribuite functiei
+std::cout << "Hello World !";
+std::cout << "Program in limbaj c++";
+}
+
+
